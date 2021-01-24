@@ -1,9 +1,0 @@
-img{
-    width:300px;
-    height:300px;
-}
-#images_div {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
