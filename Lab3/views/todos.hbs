@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+        {{!-- TABLE TO PERFPRM THE OPERATION ON IT BEFORE SENDING IN TO CLIENT SDIE --}}
+    <table>
+        <th>Identification</th>
+        <th>Title</th>
+        <th>Status</th>
+        {{!-- ITERATING ON OBJECT TODOS --}}
+        {{#each todos}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.status}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+
+</html>

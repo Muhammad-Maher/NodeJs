@@ -1,0 +1,32 @@
+{
+  "name": "third-lab",
+  "version": "0.0.1",
+  "description": "Creating simple Express server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "debug": "nodemon --inspect .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muhammad-Maher/NodeJs.git"
+  },
+  "author": "Muhammad Maher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muhammad-Maher/NodeJs/issues"
+  },
+  "homepage": "https://github.com/Muhammad-Maher/NodeJs#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "multer": "^1.4.2",
+    "shortid": "^2.2.16"
+  }
+}
