@@ -26,6 +26,8 @@ app.get('/', function(req, res) {
     res.render('todos');
 });
 
+// shouldn't the app use the routes ? not the other way around 
+// app.use("/todo",todoRouter)
 routes(app);
 
 app.listen(5000)

@@ -1,6 +1,11 @@
 //THROW AN ERROR WHEN NOT INCLUDED IN THIS FILE
 const shortid = require('shortid');
 module.exports = function (app, io) {
+    // i see now your logic of passing the app to your routes function
+    // although this will work, it's somehow feels like anti-pattern 
+    // express offers routers, which is a way to combine routes toghether
+    //look for it in the express documnetation.
+    
     //THROW AN ERROR WHEN NOT INCLUDED IN THIS FILE
     const fs = require('fs');
 
@@ -14,6 +19,7 @@ module.exports = function (app, io) {
 
     //FORM REGISTERATION PAGE THAT HAS SEND REGISTERATION DATA TO THE SERVER AND REDIRECT AACCOURDING TO RESPONSE
     app.get('/index', (req, res, next) => {
+        
         res.sendFile(__dirname + '/pages/form_page/index.html', (err) => { if (err) next(err) });
         next();
     })
@@ -37,11 +43,17 @@ module.exports = function (app, io) {
     //REGISTERATION VALIDATION  **// express validateor can be used
     app.post('/register', function (req, res, next) {
         //VALIDATE ACCORDING TO REGEX    
+        // awesome use of regex 
+        //but, you can make an object, like regexMap = {"englighLetters":/^[a-zA-Z\-]+$/}, then use your regex map in functions, since not all people can understand regex 
+        // and you will make it easier to read the meaning behind the code
+        /// USE CONST 
         let user_name_check = (/^[a-zA-Z\-]+$/).test(req.body.user_name)
         let password_check = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/).test(req.body.password)
         let first_name_check = (/^[a-zA-Z\-]+$/).test(req.body.first_name)
 
         //IF THE VALIDATION IS TRUE APPAND THE NEW DATA AND RETURN RESPONSE
+        
+        // do early returns 
         if (user_name_check && password_check && first_name_check) {
 
             const user_db = fs.readFileSync('./usefrs.json', (err) => { if (err) next(err) });
@@ -95,6 +107,7 @@ module.exports = function (app, io) {
 
         for (i = 0; i < user_db_array.length && user_exist === 0; i++) {
             let user_object = user_db_array[i]
+            // use filter or find 
             if (user_object.user_name == req.body.user_name && user_object.password == req.body.password) {
                 user_exist = 1;
                 var expiration_date = new Date(Date.now());
@@ -137,6 +150,7 @@ module.exports = function (app, io) {
             const to_do_list = fs.readFileSync('./toDoList.json', (err) => { if (err) next(err) });
             let list = JSON.parse(to_do_list);
             console.log(shortid.generate())
+            // don't mutate, use functions like map, concat, reduce
             list.push(
                 { "tilte": req.body.title, "status": "to-do", "id": shortid.generate(), "user_name": req.body.user_name }
             )
